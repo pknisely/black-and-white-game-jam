@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     // Detects color change request
     bool changeColor = false;
 
+    public AudioSource sfxAudioSource;
 
     // Patrick adding colors
 //    public Color colorOne;
@@ -43,12 +44,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+            sfxAudioSource.Play();
         }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
             changeColor = true;
-
         }
 /*
         hit = Physics2D.Raycast(controller.m_GroundCheck.position, -Vector2.up, 0.1f, floorMask);
