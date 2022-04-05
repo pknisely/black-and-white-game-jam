@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public PlayerController controller;
 
     // Run speed
@@ -20,21 +19,20 @@ public class PlayerMovement : MonoBehaviour
     // Detects color change request
     bool changeColor = false;
 
+    // audioSFX
+    public AudioClip jumpSFX;
+    public AudioClip swapSFX;
     public AudioSource sfxAudioSource;
 
     // Patrick adding colors
-//    public Color colorOne;
- //   public Color colorTwo;
-
-
-
-
+    // public Color colorOne;
+    // public Color colorTwo;
 
     // Patrick adding a raycast to look down to see color of current platform
-    //    private Ray2D ray;
-    //    private RaycastHit2D hit;
+    // private Ray2D ray;
+    // private RaycastHit2D hit;
 
-    //    public LayerMask floorMask;
+    // public LayerMask floorMask;
 
     // Update is called once per frame
     void Update()
@@ -45,12 +43,17 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
             if (controller.m_Grounded == true)
-            sfxAudioSource.Play();
+            {
+                sfxAudioSource.clip = jumpSFX;
+                sfxAudioSource.Play();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
             changeColor = true;
+            sfxAudioSource.clip = swapSFX;
+            sfxAudioSource.Play();
         }
 /*
         hit = Physics2D.Raycast(controller.m_GroundCheck.position, -Vector2.up, 0.1f, floorMask);
@@ -73,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-private void FixedUpdate()
+    private void FixedUpdate()
     {
         // Move our character
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
