@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     // Detects jumping
     bool jump = false;
 
+    // Detects color change request
+    bool changeColor = false;
 
 
     // Patrick adding colors
@@ -45,7 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            controller.ChangeCollider(controller.isColorOne);
+            changeColor = true;
+
         }
 /*
         hit = Physics2D.Raycast(controller.m_GroundCheck.position, -Vector2.up, 0.1f, floorMask);
@@ -73,6 +76,10 @@ private void FixedUpdate()
         // Move our character
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         jump = false;
-
+        if (changeColor == true)
+        {
+            controller.ChangeCollider(controller.isColorOne);
+            changeColor = false;
+        }
     }
 }

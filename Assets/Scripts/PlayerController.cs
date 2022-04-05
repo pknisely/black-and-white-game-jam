@@ -24,10 +24,9 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private TilemapCollider2D colorOneTilemapCollider;
 	[SerializeField] private TilemapCollider2D colorTwoTilemapCollider;
 
-	// Patrick adding sprites and Sprite renderer for different colored sprites and the renderer to change
-	[SerializeField] private Sprite colorOneSprite;
-	[SerializeField] private Sprite colorTwoSprite;
-	[SerializeField] private SpriteRenderer spriteRenderer;
+	// Patrick adding Sprite renderers for different colored sprites 
+	[SerializeField] private SpriteRenderer colorOneSpriteRenderer;
+	[SerializeField] private SpriteRenderer colorTwoSpriteRenderer;
 
 	// Patrick adding a boolean for color 1 or color 2
 	[SerializeField] public bool isColorOne = true;
@@ -160,19 +159,29 @@ public class PlayerController : MonoBehaviour
 
 	public void ChangeCollider(bool colorOneBool)
 	{
+		colorOneTilemapCollider.enabled = !colorOneTilemapCollider.enabled;
+		colorTwoTilemapCollider.enabled = !colorTwoTilemapCollider.enabled;
+		colorOneSpriteRenderer.enabled = !colorOneSpriteRenderer.enabled;
+		colorTwoSpriteRenderer.enabled = !colorTwoSpriteRenderer.enabled;
+		isColorOne = !isColorOne;
+
+/*
 		if (colorOneBool == true)
 		{
 			colorOneTilemapCollider.enabled = false;
 			colorTwoTilemapCollider.enabled = true;
-			spriteRenderer.sprite = colorTwoSprite;
+			colorOneSpriteRenderer.enabled = false;
+			colorTwoSpriteRenderer.enabled = true;
 			isColorOne = false;
 		}
 		else
 		{
 			colorOneTilemapCollider.enabled = true;
 			colorTwoTilemapCollider.enabled = false;
-			spriteRenderer.sprite = colorOneSprite;
+			colorOneSpriteRenderer.enabled = true;
+			colorTwoSpriteRenderer.enabled = false;
 			isColorOne = true;
 		}
+*/
 	}
 }
