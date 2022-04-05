@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetButtonDown("Fire1"))
         {
             changeColor = true;
             sfxAudioSource.clip = swapSFX;
