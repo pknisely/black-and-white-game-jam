@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,18 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+
+	// Patrick adding two tilemap collider 2Ds for the tilemaps to enable or disable
+	[SerializeField] private TilemapCollider2D colorOneTilemapCollider;
+	[SerializeField] private TilemapCollider2D colorTwoTilemapCollider;
+
+	// Patrick adding sprites and Sprite renderer for different colored sprites and the renderer to change
+	[SerializeField] private Sprite colorOneSprite;
+	[SerializeField] private Sprite colorTwoSprite;
+	[SerializeField] private SpriteRenderer spriteRenderer;
+
+	// Patrick adding a boolean for color 1 or color 2
+	[SerializeField] public bool isColorOne = true;
 
 	[Header("Events")]
 	[Space]
@@ -143,5 +156,23 @@ public class PlayerController : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+
+	public void ChangeCollider(bool colorOneBool)
+	{
+		if (colorOneBool == true)
+		{
+			colorOneTilemapCollider.enabled = false;
+			colorTwoTilemapCollider.enabled = true;
+			spriteRenderer.sprite = colorTwoSprite;
+			isColorOne = false;
+		}
+		else
+		{
+			colorOneTilemapCollider.enabled = true;
+			colorTwoTilemapCollider.enabled = false;
+			spriteRenderer.sprite = colorOneSprite;
+			isColorOne = true;
+		}
 	}
 }
