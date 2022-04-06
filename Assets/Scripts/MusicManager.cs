@@ -43,63 +43,63 @@ public class MusicManager : MonoBehaviour
     void UpdateTracks(float yPos)
     {
         StopAllCoroutines();
-        // Handles track 6
-        if (yPos > -50)
+        // Handles track 7
+        if (yPos > 0)
         {
             StartCoroutine(FadeAudioSource(track7Audio, 5, volumeSetting));
         }
-        if (yPos <= -50)
+        if (yPos <= 0)
         {
 
             StartCoroutine(FadeAudioSource(track7Audio, 3.5f, 0));
         }
 
         // Handles track 6
-        if (yPos > -55)
+        if (yPos > -15)
         {
             StartCoroutine(FadeAudioSource(track6Audio, 5, volumeSetting));
         }
-        if (yPos <= -55)
+        if (yPos <= -15)
         {
             StartCoroutine(FadeAudioSource(track6Audio, 3.5f, 0));
         }
 
         // Handles track 5
-        if (yPos > -60)
+        if (yPos > -30)
         {
             StartCoroutine(FadeAudioSource(track5Audio, 5, volumeSetting));
         }
-        if (yPos <= -60)
+        if (yPos <= -30)
         {
             StartCoroutine(FadeAudioSource(track5Audio, 3.5f, 0));
         }
 
         // Handles track 4
-        if (yPos > -65)
+        if (yPos > -45)
         {
             StartCoroutine(FadeAudioSource(track4Audio, 5, volumeSetting));
         }
-        if (yPos <= -65)
+        if (yPos <= -45)
         {
             StartCoroutine(FadeAudioSource(track4Audio, 3.5f, 0));
         }
 
         // Handles track 3
-        if (yPos > -70)
+        if (yPos > -60)
         {
             StartCoroutine(FadeAudioSource(track3Audio, 5, volumeSetting));
         }
-        if (yPos <= -70)
+        if (yPos <= -60)
         {
             StartCoroutine(FadeAudioSource(track3Audio, 3.5f, 0));
         }
 
         // Handles track 2
-        if (yPos > -75)
+        if (yPos > -72.5)
         {
             StartCoroutine(FadeAudioSource(track2Audio, 5, volumeSetting));
         }
-        if (yPos <= -75)
+        if (yPos <= -72.5)
         {
             StartCoroutine(FadeAudioSource(track2Audio, 3.5f, 0));
         }
