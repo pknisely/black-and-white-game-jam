@@ -19,12 +19,18 @@ public class MusicManager : MonoBehaviour
     // A number for the current game volume
     public float volumeSetting = 1;
 
-//    public Slider volumeSlider = null;
+    //    public Slider volumeSlider = null;
 
     // We'll want one default audio source to start playing on start
     void Start()
     {
-        
+        track1Audio.volume = volumeSetting;
+        track2Audio.volume = 0;
+        track3Audio.volume = 0;
+        track4Audio.volume = 0;
+        track5Audio.volume = 0;
+        track6Audio.volume = 0;
+        track7Audio.volume = 0;
     }
 
     private void Update()
@@ -32,87 +38,85 @@ public class MusicManager : MonoBehaviour
         UpdateTracks(PlayerObject.transform.position.y);
     }
 
-    // Function to play the current audio
-    public void PlayAudio(AudioSource radioAudio)
-    {
-        radioAudio.Play();
-    }
-
-
-
     
     // Function to update the music based on the player's y position
     void UpdateTracks(float yPos)
     {
+        StopAllCoroutines();
         // Handles track 6
         if (yPos > -50)
         {
-            Show(track7Audio);
+            StartCoroutine(FadeAudioSource(track7Audio, 5, volumeSetting));
         }
         if (yPos <= -50)
         {
-            Hide(track7Audio);
+
+            StartCoroutine(FadeAudioSource(track7Audio, 5, 0));
         }
 
         // Handles track 6
         if (yPos > -55)
         {
-            Show(track6Audio);
+            StartCoroutine(FadeAudioSource(track6Audio, 5, volumeSetting));
         }
         if (yPos <= -55)
         {
-            Hide(track6Audio);
+            StartCoroutine(FadeAudioSource(track6Audio, 5, 0));
         }
 
         // Handles track 5
         if (yPos > -60)
         {
-            Show(track5Audio);
+            StartCoroutine(FadeAudioSource(track5Audio, 5, volumeSetting));
         }
         if (yPos <= -60)
         {
-            Hide(track5Audio);
+            StartCoroutine(FadeAudioSource(track5Audio, 5, 0));
         }
 
         // Handles track 4
         if (yPos > -65)
         {
-            Show(track4Audio);
+            StartCoroutine(FadeAudioSource(track4Audio, 5, volumeSetting));
         }
         if (yPos <= -65)
         {
-            Hide(track4Audio);
+            StartCoroutine(FadeAudioSource(track4Audio, 5, 0));
         }
 
         // Handles track 3
         if (yPos > -70)
         {
-            Show(track3Audio);
+            StartCoroutine(FadeAudioSource(track3Audio, 5, volumeSetting));
         }
         if (yPos <= -70)
         {
-            Hide(track3Audio);
+            StartCoroutine(FadeAudioSource(track3Audio, 5, 0));
         }
 
         // Handles track 2
         if (yPos > -75)
         {
-            Show(track2Audio);
+            StartCoroutine(FadeAudioSource(track2Audio, 5, volumeSetting));
         }
         if (yPos <= -75)
         {
-            Hide(track2Audio);
+            StartCoroutine(FadeAudioSource(track2Audio, 5, 0));
         }
     }
 
-    public void Show(AudioSource trackAudio)
+    private IEnumerator FadeAudioSource(AudioSource trackAudio, float duration, float targetVolume)
     {
-        trackAudio.volume = volumeSetting;
-    }
 
-    public void Hide(AudioSource trackAudio)
-    {
-        trackAudio.volume = 0;
+        float currentTime = 0;
+        float start = trackAudio.volume;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            trackAudio.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
     }
 
     /*

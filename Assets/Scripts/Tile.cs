@@ -7,5 +7,6 @@ public class Tile : MonoBehaviour
 
     public bool isColorOne;
     public bool isColorTwo;
+    public bool isColorThree;
 
 }
