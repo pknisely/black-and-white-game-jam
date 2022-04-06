@@ -51,7 +51,7 @@ public class MusicManager : MonoBehaviour
         if (yPos <= -50)
         {
 
-            StartCoroutine(FadeAudioSource(track7Audio, 5, 0));
+            StartCoroutine(FadeAudioSource(track7Audio, 3.5f, 0));
         }
 
         // Handles track 6
@@ -61,7 +61,7 @@ public class MusicManager : MonoBehaviour
         }
         if (yPos <= -55)
         {
-            StartCoroutine(FadeAudioSource(track6Audio, 5, 0));
+            StartCoroutine(FadeAudioSource(track6Audio, 3.5f, 0));
         }
 
         // Handles track 5
@@ -71,7 +71,7 @@ public class MusicManager : MonoBehaviour
         }
         if (yPos <= -60)
         {
-            StartCoroutine(FadeAudioSource(track5Audio, 5, 0));
+            StartCoroutine(FadeAudioSource(track5Audio, 3.5f, 0));
         }
 
         // Handles track 4
@@ -81,7 +81,7 @@ public class MusicManager : MonoBehaviour
         }
         if (yPos <= -65)
         {
-            StartCoroutine(FadeAudioSource(track4Audio, 5, 0));
+            StartCoroutine(FadeAudioSource(track4Audio, 3.5f, 0));
         }
 
         // Handles track 3
@@ -91,7 +91,7 @@ public class MusicManager : MonoBehaviour
         }
         if (yPos <= -70)
         {
-            StartCoroutine(FadeAudioSource(track3Audio, 5, 0));
+            StartCoroutine(FadeAudioSource(track3Audio, 3.5f, 0));
         }
 
         // Handles track 2
@@ -101,7 +101,7 @@ public class MusicManager : MonoBehaviour
         }
         if (yPos <= -75)
         {
-            StartCoroutine(FadeAudioSource(track2Audio, 5, 0));
+            StartCoroutine(FadeAudioSource(track2Audio, 3.5f, 0));
         }
     }
 
