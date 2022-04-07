@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerTUTORIAL : MonoBehaviour
 {
 	[SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
@@ -19,17 +19,6 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
-
-	// Patrick adding two tilemap collider 2Ds for the tilemaps to enable or disable
-	[SerializeField] private TilemapCollider2D colorOneTilemapCollider;
-	[SerializeField] private TilemapCollider2D colorTwoTilemapCollider;
-
-	// Patrick adding Sprite renderers for different colored sprites 
-	[SerializeField] private SpriteRenderer colorOneSpriteRenderer;
-	[SerializeField] private SpriteRenderer colorTwoSpriteRenderer;
-
-	// Patrick adding a boolean for color 1 or color 2
-	[SerializeField] public bool isColorOne = true;
 
 	[Header("Events")]
 	[Space]
@@ -158,31 +147,4 @@ public class PlayerController : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
-	public void ChangeCollider(bool colorOneBool)
-	{
-		colorOneTilemapCollider.enabled = !colorOneTilemapCollider.enabled;
-		colorTwoTilemapCollider.enabled = !colorTwoTilemapCollider.enabled;
-		colorOneSpriteRenderer.enabled = !colorOneSpriteRenderer.enabled;
-		colorTwoSpriteRenderer.enabled = !colorTwoSpriteRenderer.enabled;
-		isColorOne = !isColorOne;
-
-/*
-		if (colorOneBool == true)
-		{
-			colorOneTilemapCollider.enabled = false;
-			colorTwoTilemapCollider.enabled = true;
-			colorOneSpriteRenderer.enabled = false;
-			colorTwoSpriteRenderer.enabled = true;
-			isColorOne = false;
-		}
-		else
-		{
-			colorOneTilemapCollider.enabled = true;
-			colorTwoTilemapCollider.enabled = false;
-			colorOneSpriteRenderer.enabled = true;
-			colorTwoSpriteRenderer.enabled = false;
-			isColorOne = true;
-		}
-*/
-	}
 }
