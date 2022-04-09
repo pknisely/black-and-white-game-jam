@@ -51,7 +51,6 @@ public class PlayerController : MonoBehaviour
 
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
-		Cursor.visible = false;
 	}
 
 	private void FixedUpdate()

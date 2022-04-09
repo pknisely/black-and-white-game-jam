@@ -20,12 +20,14 @@ public class PlayerMovementTUTORIAL : MonoBehaviour
     public AudioClip swapSFX;
     public AudioSource sfxAudioSource;
 
+    public GameObject whiteHeadphones;
+
     // Update is called once per frame
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && controller.noHeadphones == false)
         {
             jump = true;
             if (controller.m_Grounded == true)
@@ -42,4 +44,5 @@ public class PlayerMovementTUTORIAL : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         jump = false;
     }
+
 }

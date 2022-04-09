@@ -53,7 +53,6 @@ public class PlayerControllerTEST3SWAP : MonoBehaviour
 
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
-		Cursor.visible = false;
 	}
 
 	private void FixedUpdate()

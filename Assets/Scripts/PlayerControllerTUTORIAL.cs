@@ -20,6 +20,13 @@ public class PlayerControllerTUTORIAL : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
+	// Patrick adding Sprite renderers for different sprites 
+	[SerializeField] private SpriteRenderer noHeadphonesSpriteRenderer;
+	[SerializeField] private SpriteRenderer headphonesSpriteRenderer;
+
+	// Patrick adding a boolean for color 1 or color 2
+	[SerializeField] public bool noHeadphones = true;
+
 	[Header("Events")]
 	[Space]
 
@@ -40,7 +47,6 @@ public class PlayerControllerTUTORIAL : MonoBehaviour
 
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
-		Cursor.visible = false;
 	}
 
 	private void FixedUpdate()
@@ -147,4 +153,9 @@ public class PlayerControllerTUTORIAL : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
+	public void PutOnHeadphones()
+	{
+		noHeadphonesSpriteRenderer.enabled = !noHeadphonesSpriteRenderer.enabled;
+		headphonesSpriteRenderer.enabled = !headphonesSpriteRenderer.enabled;
+	}
 }
