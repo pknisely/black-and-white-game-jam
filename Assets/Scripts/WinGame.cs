@@ -7,6 +7,10 @@ public class WinGame : MonoBehaviour
 {
     public AudioSource sfxPlayer;
     public AudioClip powerupSFX;
+
+    [SerializeField] private UIManager uImanager;
+
+
     private void OnCollisionEnter2D(Collision2D collider)
     {
         if (collider.gameObject.tag == "Player")

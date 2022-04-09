@@ -6,6 +6,8 @@ public class GlobalVars : MonoBehaviour
 {
     public float currentMusicVolume = 1f;
     public float currentSFXVolume = 1f;
+    public float timePlayed = 0;
+    public float currentRecord;
 
     private void Start()
     {
@@ -13,7 +15,9 @@ public class GlobalVars : MonoBehaviour
         // previous playthrough
         currentMusicVolume = PlayerPrefs.GetFloat("musicVolume", 1);
         currentSFXVolume = PlayerPrefs.GetFloat("sfxVolume", 1);
-    }
+        timePlayed = PlayerPrefs.GetFloat("timePlayed", 0);
+        currentRecord = PlayerPrefs.GetFloat("currentRecord", 0)
+}
 
     private void OnDestroy()
     {
@@ -24,6 +28,7 @@ public class GlobalVars : MonoBehaviour
         // or changing scenes
         PlayerPrefs.SetFloat("musicVolume", currentMusicVolume);
         PlayerPrefs.SetFloat("sfxVolume", currentSFXVolume);
-
+        PlayerPrefs.SetFloat("timePlayed", timePlayed);
+        PlayerPrefs.SetFloat("currentRecord", currentRecord);
     }
 }
