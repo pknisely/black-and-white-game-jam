@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovementTUTORIAL : MonoBehaviour
 {
     public PlayerControllerTUTORIAL controller;
+    public UIManager uiManager;
 
     // Run speed
     public float runSpeed = 40f;
@@ -36,6 +37,9 @@ public class PlayerMovementTUTORIAL : MonoBehaviour
                 sfxAudioSource.Play();
             }
         }
+
+        if (controller.noHeadphones == false)
+            uiManager.canJump = true;
     }
 
     private void FixedUpdate()

@@ -161,8 +161,8 @@ public class PlayerControllerTEST3SWAP : MonoBehaviour
 
 	public void ChangeCollider(int colorNum)
 	{
-        switch (colorNum)
-        {
+		switch (colorNum)
+		{
 			case 1:
 				colorOneTilemapCollider.enabled = false;
 				colorTwoTilemapCollider.enabled = true;
@@ -192,25 +192,40 @@ public class PlayerControllerTEST3SWAP : MonoBehaviour
 				break;
 
 		}
-
-
-/*
-		if (colorOneBool == true)
-		{
-			colorOneTilemapCollider.enabled = false;
-			colorTwoTilemapCollider.enabled = true;
-			colorOneSpriteRenderer.enabled = false;
-			colorTwoSpriteRenderer.enabled = true;
-			isColorOne = false;
-		}
-		else
-		{
-			colorOneTilemapCollider.enabled = true;
-			colorTwoTilemapCollider.enabled = false;
-			colorOneSpriteRenderer.enabled = true;
-			colorTwoSpriteRenderer.enabled = false;
-			isColorOne = true;
-		}
-*/
 	}
+
+		public void ChangeColliderBackwards(int colorNum)
+		{
+			switch (colorNum)
+			{
+				case 1:
+					colorOneTilemapCollider.enabled = false;
+					colorTwoTilemapCollider.enabled = false;
+					colorThreeTilemapCollider.enabled = true;
+					colorOneSpriteRenderer.enabled = false;
+					colorTwoSpriteRenderer.enabled = false;
+					colorThreeSpriteRenderer.enabled = true;
+					currentColor = 3;
+					break;
+				case 2:
+					colorOneTilemapCollider.enabled = true;
+					colorTwoTilemapCollider.enabled = false;
+					colorThreeTilemapCollider.enabled = false;
+					colorOneSpriteRenderer.enabled = true;
+					colorTwoSpriteRenderer.enabled = false;
+					colorThreeSpriteRenderer.enabled = false;
+					currentColor = 1;
+					break;
+				case 3:
+					colorOneTilemapCollider.enabled = false;
+					colorTwoTilemapCollider.enabled = true;
+					colorThreeTilemapCollider.enabled = false;
+					colorOneSpriteRenderer.enabled = false;
+					colorTwoSpriteRenderer.enabled = true;
+					colorThreeSpriteRenderer.enabled = false;
+					currentColor = 2;
+					break;
+
+			}
+		}
 }

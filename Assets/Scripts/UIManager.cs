@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.TMPro;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,110 +12,209 @@ public class UIManager : MonoBehaviour
     // Objects to hold images of the Hud -- Array of music notes, an array of headphones, and the record
     public GameObject[] MusicNotes;
     public GameObject[] Headphones;
-    public GameObject Record;
+    public GameObject GoalObject;
+
 
     // Accessible music manager for values from heighth of player
     public MusicManager musicManager;
 
     // UI elements to pop up the dialogue boxes
-    [SerializeField] private TMPro textbox;
-    [SerializeField] private TMPro about;
-    [SerializeField] private TMPro controls;
+    [SerializeField] private TMP_Text textBox;
+    [SerializeField] private TMP_Text textBoxTwo;
+    [SerializeField] private TMP_Text controls;
     [SerializeField] private GameObject DialogueBox;
+    [SerializeField] private GameObject DialogueBoxTwo;
 
-    private string about =
-"Ideally we’d have a nice animation, but this paragraph will have to suffice. Happy the robot wants nothing more than to listen to his records on his headphones and enjoy his life.But sometimes the world isn’t fair. Help Happy get his headphones and his record back!
-    CREDITS:
-    Eber Alegria
-    Bent Neatly
-    Patrick Knisely (Pdyx)";
-    private string controls;
-    private string gotBlackHeadphones = "You got the black headphones! You can jump!"
-    private string gotWhiteHeadphones = "You got the white headphones! You can jump higher and swap!"
-    private string gotGrayHeadphones = "You got the gray headphones! You can jump higher and swap backwards!"
+    // Strings for text boxes
+
+    private string controlsText;
+    private string introScreen = "Someone has taken Happy the robot's three favorite pairs of headphones and Happy's record!\n\nHelp Happy get them back!\n\nPress the 'p' key on the keyboard to pause and see the controls at any time.";
+    private string gotBlackHeadphones = "You got the black headphones!\n\nYou can jump!";
+    private string gotWhiteHeadphones = "You got the white headphones!\n\nYou can jump higher and swap!";
+    private string gotGrayHeadphones = "You got the gray headphones! You can jump higher and swap backwards!";
     private string gotRecord = "You got the record!";
     private string didntGetRecord = "You didn't get the record...";
+    private string credits = "Thanks for playing!\n\nCREDITS\n\nEber Alegria\nBent Neatly\nPatrick Knisely aka Pdyx\n\nIf you enjoyed the game and would like to see it improved upon and expanded, please let us know!\n\npdyx123 @gmail.com";
 
-    // Update is called once per frame
-    void Update()
+    // bools for item obtaining
+
+    public bool canJump = false;
+    public bool beatLevel1 = false;
+    public bool beatLevel2 = false;
+    public bool beatLevel3 = false;
+
+    // Start method
+    private void Start()
     {
-        // Check for if you're high enough for each musical note to appear
-        if (musicManager.track2Playing == true)
-            MusicNotes[0].SetActive(true);
-        if (musicManager.track3Playing == true)
-            MusicNotes[1].SetActive(true);
-        if (musicManager.track4Playing == true)
-            MusicNotes[2].SetActive(true);
-        if (musicManager.track5Playing == true)
-            MusicNotes[3].SetActive(true);
-        if (musicManager.track6Playing == true)
-            MusicNotes[4].SetActive(true);
-        if (musicManager.track7Playing == true)
-            MusicNotes[5].SetActive(true);
+        if (canJump == true)
+            Headphones[0].SetActive(true);
         if (beatLevel1 == true)
-            Headhpones.SecActive(true);
+            Headphones[1].SetActive(true);
         if (beatLevel2 == true)
-            Headphones.SetActive(true);
-        if (beatLevel3 == true) 
-            Record.SetActive(true);
+            Headphones[2].SetActive(true);
 
-        // Check for if you're low enough for each musical note to disappear
-        if (musicManager.track2Playing == false)
-            MusicNotes[0].SetActive(false);
-        if (musicManager.track3Playing == false)
-            MusicNotes[1].SetActive(false);
-        if (musicManager.track4Playing == false)
-            MusicNotes[2].SetActive(false);
-        if (musicManager.track5Playing == false)
-            MusicNotes[3].SetActive(false);
-        if (musicManager.track6Playing == false)
-            MusicNotes[4].SetActive(false);
-        if (musicManager.track7Playing == false)
-            MusicNotes[5].SetActive(false);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(3))
+        {
+            canJump = true;
+            beatLevel1 = true;
+            beatLevel2 = true;
+        }
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(2))
+        {
+            canJump = true;
+            beatLevel1 = true;
+        }
     }
 
-    void DisplayDialogueBox(int level, int occ)
+        // Update is called once per frame
+    private void Update()
     {
-            Time.timeScale = 0;
-            DialogueBox.SetActive(true);
-            Cursor.visible = true;
-            switch (level) 
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(3))
+            {
+                // Check for if you're high enough for each musical note to appear
+                if (musicManager.track2Playing == true)
+                    MusicNotes[0].SetActive(true);
+                if (musicManager.track3Playing == true)
+                    MusicNotes[1].SetActive(true);
+                if (musicManager.track4Playing == true)
+                    MusicNotes[2].SetActive(true);
+                if (musicManager.track5Playing == true)
+                    MusicNotes[3].SetActive(true);
+                if (musicManager.track6Playing == true)
+                    MusicNotes[4].SetActive(true);
+                if (musicManager.track7Playing == true)
+                    MusicNotes[5].SetActive(true);
+
+                // Check for if you're low enough for each musical note to disappear
+                if (musicManager.track2Playing == false)
+                    MusicNotes[0].SetActive(false);
+                if (musicManager.track3Playing == false)
+                    MusicNotes[1].SetActive(false);
+                if (musicManager.track4Playing == false)
+                    MusicNotes[2].SetActive(false);
+                if (musicManager.track5Playing == false)
+                    MusicNotes[3].SetActive(false);
+                if (musicManager.track6Playing == false)
+                    MusicNotes[4].SetActive(false);
+                if (musicManager.track7Playing == false)
+                    MusicNotes[5].SetActive(false);
+
+                if (beatLevel3 == true)
+                    GoalObject.SetActive(true);
+            }
+
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(2))
+            {
+                canJump = true;
+                beatLevel1 = true;
+
+                // Check for if you're high enough for each musical note to appear
+                if (musicManager.track2Playing == true)
+                    MusicNotes[0].SetActive(true);
+                if (musicManager.track3Playing == true)
+                    MusicNotes[1].SetActive(true);
+                if (musicManager.track4Playing == true)
+                    MusicNotes[2].SetActive(true);
+                if (musicManager.track5Playing == true)
+                    MusicNotes[3].SetActive(true);
+                if (musicManager.track6Playing == true)
+                    MusicNotes[4].SetActive(true);
+                if (musicManager.track7Playing == true)
+                    MusicNotes[5].SetActive(true);
+
+                // Check for if you're low enough for each musical note to disappear
+                if (musicManager.track2Playing == false)
+                    MusicNotes[0].SetActive(false);
+                if (musicManager.track3Playing == false)
+                    MusicNotes[1].SetActive(false);
+                if (musicManager.track4Playing == false)
+                    MusicNotes[2].SetActive(false);
+                if (musicManager.track5Playing == false)
+                    MusicNotes[3].SetActive(false);
+                if (musicManager.track6Playing == false)
+                    MusicNotes[4].SetActive(false);
+                if (musicManager.track7Playing == false)
+                    MusicNotes[5].SetActive(false);
+
+                if (beatLevel2 == true)
+                    GoalObject.SetActive(true);
+            }
+
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+            {
+                if (canJump == true)
+                Headphones[0].SetActive(true);
+
+                // Check for if you're high enough for each musical note to appear
+                if (musicManager.track2Playing == true)
+                    MusicNotes[0].SetActive(true);
+                if (musicManager.track3Playing == true)
+                    MusicNotes[1].SetActive(true);
+                if (musicManager.track4Playing == true)
+                    MusicNotes[2].SetActive(true);
+
+                // Check for if you're low enough for each musical note to disappear
+                if (musicManager.track2Playing == false)
+                    MusicNotes[0].SetActive(false);
+                if (musicManager.track3Playing == false)
+                    MusicNotes[1].SetActive(false);
+                if (musicManager.track4Playing == false)
+                    MusicNotes[2].SetActive(false);
+
+                if (beatLevel1 == true)
+                    GoalObject.SetActive(true);
+
+            }
+     }
+
+    public void DisplayDialogueBox(int level, int occ)
+    {
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        switch (level)
         {
             case 0:
                 {
-                    about = "Ideally we’d have a nice animation, but this paragraph will have to suffice. Happy the robot wanted nothing more than to listen to his records on his headphones. But sometimes the world isn’t fair. Help Happy get his headphones and his record back!
-
-
-    CREDITS:
-                    Eber Alegria
-    Bent Neatly
-    Patrick Knisely(Pdyx)
-"
+                    // CursorOn()
+                    //                               controls = "";
+                    break;
                 }
+
             case 1:
                 {
-                   switch (occ)
+                    switch (occ)
                     {
                         case 0:
                             {
-                                controls = "";
+                                CursorOn();
+                                DialogueBox.SetActive(true);
+                                textBox.text = introScreen;
                                 break;
                             }
                         case 1:
                             {
-                                
-                                textBox.SetActive();
-                                = "You got the black headphones! Now you can jump!";
+                                // CursorOn()
+                                //                               controls = "";
                                 break;
                             }
                         case 2:
                             {
-                                textBox = "You got the white headphones! Now you can swap!";
+                                CursorOn();
+                                DialogueBox.SetActive(true);
+                                textBox.text = gotBlackHeadphones;
+
+                                break;
+                            }
+                        case 3:
+                            {
+                                CursorOn();
+                                DialogueBoxTwo.SetActive(true);
+                                textBoxTwo.text = gotWhiteHeadphones;
                                 break;
                             }
                     }
                     break;
-
                 }
 
             case 2:
@@ -123,31 +223,63 @@ public class UIManager : MonoBehaviour
                     {
                         case 0:
                             {
-                                controls = "";
+                                // CursorOn()
+                                //                               controls = "";
                                 break;
                             }
                         case 1:
                             {
-                                textBox = "You got the gray headphones!Now you can swap backwards too!";
+                                CursorOn();
+                                DialogueBoxTwo.SetActive(true);
+                                textBoxTwo.text = gotGrayHeadphones;
                                 break;
                             }
+                    }
+                    break;
                 }
+
             case 3:
                 {
                     switch (occ)
                     {
                         case 0:
                             {
-                                controls = "";
+                                // CursorOn()
+                                //                               controls = "";
+                                break;
                             }
                         case 1:
                             {
                                 //                if (time >= recordtextBox)
-                                textBox = "You got the record!";
+                                CursorOn();
+                                DialogueBox.SetActive(true);
+                                textBox.text = gotRecord;
                                 //                else
                                 //                  textBox = "You didn’t get the record…";
                                 break;
                             }
+                        case 2:
+                            {
+                                CursorOn();
+                                DialogueBox.SetActive(true);
+                                textBox.text = credits;
+                                break;
+                            }
                     }
+                    break;
                 }
+        }
+    }
+
+    public void CursorOn()
+    {
+        Cursor.visible = true;
+    }
+
+    public void CursorOff()
+    {
+        Cursor.visible = false;
+    }
+
 }
+

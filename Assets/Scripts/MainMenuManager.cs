@@ -6,12 +6,15 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject OptionsMenu;
+    [SerializeField] private GameObject DialogueBox;
 
     public void Start()
     {
         HideOptionsMenu();
-        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
-            Cursor.visible = false;
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0) || SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(1))
+        {
+            CursorOff();
+        }
     }
 
     public void Update()
@@ -44,4 +47,28 @@ public class MainMenuManager : MonoBehaviour
         if (SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
             Cursor.visible = false;
     }
+
+    // Function to open the options menu
+    public void ShowDialogueBox()
+    {
+        Time.timeScale = 0;
+        DialogueBox.SetActive(true);
+    }
+
+    public void HideDialogueBox()
+    {
+        Time.timeScale = 1;
+        DialogueBox.SetActive(false);
+    }
+
+    public void CursorOn()
+    {
+        Cursor.visible = true;
+    }
+
+    public void CursorOff()
+    {
+        Cursor.visible = false;
+    }
+
 }

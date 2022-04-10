@@ -16,7 +16,7 @@ public class GlobalVars : MonoBehaviour
         currentMusicVolume = PlayerPrefs.GetFloat("musicVolume", 1);
         currentSFXVolume = PlayerPrefs.GetFloat("sfxVolume", 1);
         timePlayed = PlayerPrefs.GetFloat("timePlayed", 0);
-        currentRecord = PlayerPrefs.GetFloat("currentRecord", 0)
+        currentRecord = PlayerPrefs.GetFloat("currentRecord", 0);
 }
 
     private void OnDestroy()

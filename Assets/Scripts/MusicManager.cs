@@ -47,14 +47,22 @@ public class MusicManager : MonoBehaviour
     // We'll want one default audio source to start playing on start
     void Start()
     {
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
+        {
+            // Get the current settings for music and sfx volume from the GlobalVars variables
+            musicVolumeSetting = PlayerPrefs.GetFloat("musicVolume", 1);
+            sfxVolumeSetting = PlayerPrefs.GetFloat("sfxVolume", 1);
 
-        // Get the current settings for music and sfx volume from the GlobalVars variables
-        musicVolumeSetting = PlayerPrefs.GetFloat("musicVolume", 1);
-        sfxVolumeSetting = PlayerPrefs.GetFloat("sfxVolume", 1);
+            // Set the sliders values to the current settings;
+            musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolume", 1);
+            sfxVolumeSlider.value = PlayerPrefs.GetFloat("sfxVolume", 1);
+        }
+        else
+        {
+            sfxVolumeSetting = 1;
+            musicVolumeSetting = 1;
+        }
 
-        // Set the sliders values to the current settings;
-        musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolume", 1);
-        sfxVolumeSlider.value = PlayerPrefs.GetFloat("sfxVolume", 1);
 
         sfxAudio.volume = sfxVolumeSetting;
         track1Audio.volume = musicVolumeSetting;
@@ -73,7 +81,7 @@ public class MusicManager : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(2) || SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(3))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(2) || SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(3))
             UpdateTracks(PlayerObject.transform.position.y);
         else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
         {
@@ -96,30 +104,36 @@ public class MusicManager : MonoBehaviour
         // Handles track 4
         if (yPos > -60)
         {
+            track4Playing = true;
             StartCoroutine(FadeAudioSource(track4Audio, 5, musicVolumeSetting));
         }
         if (yPos <= -60)
         {
+            track4Playing = false;
             StartCoroutine(FadeAudioSource(track4Audio, 1f, 0));
         }
 
         // Handles track 3
         if (yPos > -68.666)
         {
+            track3Playing = true;
             StartCoroutine(FadeAudioSource(track3Audio, 5, musicVolumeSetting));
         }
         if (yPos <= -68.666)
         {
+            track3Playing = false;
             StartCoroutine(FadeAudioSource(track3Audio, 1f, 0));
         }
 
         // Handles track 2
         if (yPos > -77.333)
         {
+            track2Playing = true;
             StartCoroutine(FadeAudioSource(track2Audio, 5, musicVolumeSetting));
         }
         if (yPos <= -77.333)
         {
+            track2Playing = false;
             StartCoroutine(FadeAudioSource(track2Audio, 1f, 0));
         }
     }

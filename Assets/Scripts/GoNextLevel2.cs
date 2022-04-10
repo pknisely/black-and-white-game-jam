@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GoNextLevel2 : MonoBehaviour
 {
+
+    public UIManager uiManager;
+    
     public AudioSource sfxPlayer;
     public AudioClip powerupSFX;
 
@@ -12,10 +15,17 @@ public class GoNextLevel2 : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            uiManager.beatLevel2 = true;
+            uiManager.DisplayDialogueBox(2, 1);
             sfxPlayer.clip = powerupSFX;
             sfxPlayer.Play();
-            SceneManager.LoadScene(3);
+
         }
+    }
+
+    public void GoLevel3()
+    {
+        SceneManager.LoadScene(3);
     }
 
 }

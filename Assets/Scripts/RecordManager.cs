@@ -5,15 +5,15 @@ using UnityEngine;
 public class RecordManager : MonoBehaviour
 {
     public float currentRecord = 0;
-    public float timePlayed = 0
+    public float timePlayed = 0;
 
     // Creating object of GlobalVars type
     public GlobalVars globalVars;
 
     void Start()
     {
-        currentRecord = globalVars.currentReord;
-        timePlayed = PlayerPrefs.get
+        currentRecord = globalVars.currentRecord;
+        timePlayed = PlayerPrefs.GetFloat("timePlayed", 0);
     }
 
     void Update()
@@ -21,7 +21,7 @@ public class RecordManager : MonoBehaviour
         currentRecord += Time.deltaTime;
     }
 
-    set NewRecord()
+    void SetNewRecord()
     {
         if (timePlayed > currentRecord)
             currentRecord = timePlayed;

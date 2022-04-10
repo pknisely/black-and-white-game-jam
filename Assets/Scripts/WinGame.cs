@@ -5,19 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class WinGame : MonoBehaviour
 {
+
+    public UIManager uiManager;
+
     public AudioSource sfxPlayer;
     public AudioClip powerupSFX;
-
-    [SerializeField] private UIManager uImanager;
 
 
     private void OnCollisionEnter2D(Collision2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
+            uiManager.beatLevel3 = true;
+            uiManager.DisplayDialogueBox(3, 1);
             sfxPlayer.clip = powerupSFX;
             sfxPlayer.Play();
-            SceneManager.LoadScene(0);
         }
     }
+
+    public void GoCredits()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }

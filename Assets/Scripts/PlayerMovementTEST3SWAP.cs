@@ -18,6 +18,7 @@ public class PlayerMovementTEST3SWAP : MonoBehaviour
 
     // Detects color change request
     bool changeColor = false;
+    bool changeColorBackwards = false;
 
     // audioSFX
     public AudioClip jumpSFX;
@@ -55,23 +56,30 @@ public class PlayerMovementTEST3SWAP : MonoBehaviour
             sfxAudioSource.clip = swapSFX;
             sfxAudioSource.Play();
         }
-/*
-        hit = Physics2D.Raycast(controller.m_GroundCheck.position, -Vector2.up, 0.1f, floorMask);
-        
-        Debug.DrawLine(controller.m_GroundCheck.position, controller.m_GroundCheck.position - Vector3.up * 0.1f);
-        if (hit)
+
+        if (Input.GetButtonDown("Fire2"))
         {
-            if (!isColorOne && hit.transform.gameObject.GetComponent<Tile>().isColorOne)
-                ChangeCollider("colorOne");
-            else if (!isColorTwo && hit.transform.gameObject.GetComponent<Tile>().isColorTwo)
-                ChangeCollider("colorTwo");
-            else
-            {
-                GetComponent<BoxCollider2D>().enabled = true;
-                GetComponent<CircleCollider2D>().enabled = true;
-            }
+            changeColorBackwards = true;
+            sfxAudioSource.clip = swapSFX;
+            sfxAudioSource.Play();
         }
-  */
+        /*
+                hit = Physics2D.Raycast(controller.m_GroundCheck.position, -Vector2.up, 0.1f, floorMask);
+
+                Debug.DrawLine(controller.m_GroundCheck.position, controller.m_GroundCheck.position - Vector3.up * 0.1f);
+                if (hit)
+                {
+                    if (!isColorOne && hit.transform.gameObject.GetComponent<Tile>().isColorOne)
+                        ChangeCollider("colorOne");
+                    else if (!isColorTwo && hit.transform.gameObject.GetComponent<Tile>().isColorTwo)
+                        ChangeCollider("colorTwo");
+                    else
+                    {
+                        GetComponent<BoxCollider2D>().enabled = true;
+                        GetComponent<CircleCollider2D>().enabled = true;
+                    }
+                }
+          */
     }
 
 
@@ -85,6 +93,11 @@ public class PlayerMovementTEST3SWAP : MonoBehaviour
         {
             controller.ChangeCollider(controller.currentColor);
             changeColor = false;
+        }
+        if (changeColorBackwards == true)
+        {
+            controller.ChangeColliderBackwards(controller.currentColor);
+            changeColorBackwards = false;
         }
     }
 }
