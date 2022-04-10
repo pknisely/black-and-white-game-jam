@@ -7,7 +7,7 @@ public class GlobalVars : MonoBehaviour
     public float currentMusicVolume = 1f;
     public float currentSFXVolume = 1f;
     public float timePlayed = 0;
-    public float currentRecord;
+    public float currentRecord = 0;
 
     private void Start()
     {
@@ -21,9 +21,7 @@ public class GlobalVars : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("GlobalVars was destoryed");
-
-        // Before we destory this game object, let's save the data to the save file.
+        // Before we destory this game object, save the data to the save file.
         // This will happen whenever object is destroyed, either quitting
         // or changing scenes
         PlayerPrefs.SetFloat("musicVolume", currentMusicVolume);

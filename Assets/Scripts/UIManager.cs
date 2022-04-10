@@ -14,6 +14,13 @@ public class UIManager : MonoBehaviour
     public GameObject[] Headphones;
     public GameObject GoalObject;
 
+    // RecordManager for getting the current time for the UI
+    // UI Box for displaying the current time
+
+    public RecordManager recordManager;
+    [SerializeField] private TMP_Text currentTimeBox;
+
+
 
     // Accessible music manager for values from heighth of player
     public MusicManager musicManager;
@@ -28,12 +35,12 @@ public class UIManager : MonoBehaviour
     // Strings for text boxes
 
     private string controlsText;
-    private string introScreen = "Someone has taken Happy the robot's three favorite pairs of headphones and Happy's record!\n\nHelp Happy get them back!\n\nPress the 'p' key on the keyboard to pause and see the controls at any time.";
+    private string introScreen = "Someone has taken Happy the Robot's record!\n\nCan you get the record?\n\nPress the 'p' key on the keyboard to pause at any time and see the controls.";
     private string gotBlackHeadphones = "You got the black headphones!\n\nYou can jump!";
     private string gotWhiteHeadphones = "You got the white headphones!\n\nYou can jump higher and swap!";
     private string gotGrayHeadphones = "You got the gray headphones! You can jump higher and swap backwards!";
-    private string gotRecord = "You got the record!";
-    private string didntGetRecord = "You didn't get the record...";
+    private string gotRecord = "You got the record! Congratulations! The new record is " + recordManager.DisplayCurrentRecord() + ".";
+    private string didntGetRecord = "You didn't get the record... The current record is " + recordManager.DisplayCurrentRecord() + ". Maybe try again?";
     private string credits = "Thanks for playing!\n\nCREDITS\n\nEber Alegria\nBent Neatly\nPatrick Knisely aka Pdyx\n\nIf you enjoyed the game and would like to see it improved upon and expanded, please let us know!\n\npdyx123 @gmail.com";
 
     // bools for item obtaining
@@ -166,6 +173,9 @@ public class UIManager : MonoBehaviour
                     GoalObject.SetActive(true);
 
             }
+
+        currentTimeBox.text = recordManager.DisplayCurrentTime();
+
      }
 
     public void DisplayDialogueBox(int level, int occ)
@@ -250,15 +260,19 @@ public class UIManager : MonoBehaviour
                             }
                         case 1:
                             {
-                                //                if (time >= recordtextBox)
                                 CursorOn();
                                 DialogueBox.SetActive(true);
                                 textBox.text = gotRecord;
-                                //                else
-                                //                  textBox = "You didn’t get the record…";
                                 break;
                             }
                         case 2:
+                            {
+                                CursorOn();
+                                DialogueBox.SetActive(true);
+                                textBox.text = didntGetRecord;
+                                break;
+                            }
+                        case 3:
                             {
                                 CursorOn();
                                 DialogueBox.SetActive(true);
