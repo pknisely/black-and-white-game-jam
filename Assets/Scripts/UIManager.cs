@@ -39,9 +39,12 @@ public class UIManager : MonoBehaviour
     private string gotBlackHeadphones = "You got the black headphones!\n\nYou can jump!";
     private string gotWhiteHeadphones = "You got the white headphones!\n\nYou can jump higher and swap!";
     private string gotGrayHeadphones = "You got the gray headphones! You can jump higher and swap backwards!";
-    private string gotRecord = "You got the record! Congratulations! The new record is " + recordManager.DisplayCurrentRecord() + ".";
-    private string didntGetRecord = "You didn't get the record... The current record is " + recordManager.DisplayCurrentRecord() + ". Maybe try again?";
+    private string gotRecord = "You got the record! Congratulations! The new record is ";
+    private string gotRecordPart2 = ".";
+    private string didntGetRecord = "You didn't get the record... The current record is ";
+    private string didntGetRecordPart2 = ". Maybe try again?";
     private string credits = "Thanks for playing!\n\nCREDITS\n\nEber Alegria\nBent Neatly\nPatrick Knisely aka Pdyx\n\nIf you enjoyed the game and would like to see it improved upon and expanded, please let us know!\n\npdyx123 @gmail.com";
+
 
     // bools for item obtaining
 
@@ -262,21 +265,21 @@ public class UIManager : MonoBehaviour
                             {
                                 CursorOn();
                                 DialogueBox.SetActive(true);
-                                textBox.text = gotRecord;
+                                textBox.text = gotRecord + recordManager.DisplayCurrentRecord() + gotRecordPart2;
                                 break;
                             }
                         case 2:
                             {
                                 CursorOn();
                                 DialogueBox.SetActive(true);
-                                textBox.text = didntGetRecord;
+                                textBox.text = didntGetRecord + recordManager.DisplayCurrentRecord() + didntGetRecordPart2;
                                 break;
                             }
                         case 3:
                             {
                                 CursorOn();
-                                DialogueBox.SetActive(true);
-                                textBox.text = credits;
+                                DialogueBoxTwo.SetActive(true);
+                                textBoxTwo.text = credits;
                                 break;
                             }
                     }

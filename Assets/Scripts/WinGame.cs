@@ -8,6 +8,7 @@ public class WinGame : MonoBehaviour
 
     public UIManager uiManager;
     public RecordManager recordManager;
+    public GlobalVars globalVars;
 
     public AudioSource sfxPlayer;
     public AudioClip powerupSFX;
@@ -19,21 +20,22 @@ public class WinGame : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            newRecord = recordManager.GetTimeFinished();
+            newRecord = recordManager.SetNewRecord();
             uiManager.beatLevel3 = true;
             if (newRecord == true)
-            { 
+            {
                 uiManager.DisplayDialogueBox(3, 1);
 
             }
             else
             {
                 uiManager.DisplayDialogueBox(3, 2);
-            }
-            
-                sfxPlayer.clip = powerupSFX;
-                sfxPlayer.Play();
-            }
+            }       
+            sfxPlayer.clip = powerupSFX;
+            sfxPlayer.Play();
+            globalVars.timePlayed = 0;
+            PlayerPrefs.SetFloat("timePlayed", 0);
+        }
     }
 
     public void GoCredits()

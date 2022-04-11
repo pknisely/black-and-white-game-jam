@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject OptionsMenu;
+    [SerializeField] private GameObject ControlsMenu;
     [SerializeField] private GameObject DialogueBox;
+    [SerializeField] private GameObject DevToolsMenu;
 
     public void Start()
     {
@@ -70,5 +72,43 @@ public class MainMenuManager : MonoBehaviour
     {
         Cursor.visible = false;
     }
+
+    public void ShowControlsMenu()
+    {
+        ControlsMenu.SetActive(true);
+    }
+
+    // Function to close the options menu
+    public void HideControlsMenu()
+    {
+        ControlsMenu.SetActive(false);
+    }
+
+    public void ShowDevToolsMenu()
+    {
+        DevToolsMenu.SetActive(true);
+    }
+
+    // Function to close the options menu
+    public void HideDevToolsMenu()
+    {
+        DevToolsMenu.SetActive(false);
+    }
+
+    public void GoMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void GoLevel2()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void GoLevel3()
+    {
+        SceneManager.LoadScene(3);
+    }
+
 
 }

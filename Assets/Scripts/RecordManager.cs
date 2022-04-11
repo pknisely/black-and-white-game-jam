@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class RecordManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class RecordManager : MonoBehaviour
     void Update()
     {
         timePlayed += Time.deltaTime;
+        globalVars.timePlayed = timePlayed;
     }
 
     public bool SetNewRecord()
@@ -28,6 +30,7 @@ public class RecordManager : MonoBehaviour
         {
             currentRecord = timeFinished;
             globalVars.currentRecord = currentRecord;
+            PlayerPrefs.SetFloat("currentRecord", currentRecord);
             return true;
         }
         else
@@ -48,18 +51,19 @@ public class RecordManager : MonoBehaviour
 
     public string FormatTime(float time)
     {
-        int minutes = (int)time / 60000;
-        int seconds = (int)time / 1000 - 60 * minutes;
-        int milliseconds = (int)time - minutes * 60000 - 1000 * seconds;
-        return string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        //int minutes = (int)time / 60000;
+        //int seconds = (int)time / 1000 - 60 * minutes;
+        //int milliseconds = (int)time - minutes * 60000 - 1000 * seconds;
+        var toDisplay = TimeSpan.FromSeconds(time);
+        return string.Format("{0:00}:{1:00}", toDisplay.Minutes, toDisplay.Seconds);
     }
 
-    public string DisplayCurrentTime(float time)
+    public string DisplayCurrentTime()
     {
         return FormatTime(timePlayed);
     }
 
-    public string DisplayCurrentRecord(float time)
+    public string DisplayCurrentRecord()
     {
         return FormatTime(currentRecord);
     }
