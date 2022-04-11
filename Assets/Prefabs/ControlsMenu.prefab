@@ -147,10 +147,18 @@ MonoBehaviour:
 
     jump - w
 
-    right mouse
-    (or right key)  - swap
+    right arrow
+    - swap
 
-    left mouse (or left key) - swap backwards'
+    left arrow - swap backwards
+
+
+    alt swap scheme:
+
+    right mouse 
+    - swap
+
+    left mouse - swap backwards'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65e5efa8501613f459917e401c4d6311, type: 2}
   m_sharedMaterial: {fileID: -4313744347489535683, guid: 65e5efa8501613f459917e401c4d6311, type: 2}
