@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RecordManager : MonoBehaviour
 {
@@ -20,14 +21,28 @@ public class RecordManager : MonoBehaviour
 
     void Update()
     {
-        timePlayed += Time.deltaTime;
-        globalVars.timePlayed = timePlayed;
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
+        {
+            timePlayed += Time.deltaTime;
+            globalVars.timePlayed = timePlayed;
+        }
     }
 
     public bool SetNewRecord()
     {
-        if (timeFinished < currentRecord)
+        timeFinished = GetTimeFinished();
+        
+        if (currentRecord == 0)
         {
+            Debug.Log(currentRecord);
+            currentRecord = timeFinished;
+            globalVars.currentRecord = currentRecord;
+            PlayerPrefs.SetFloat("currentRecord", currentRecord);
+            return true;
+        }        
+        else if (timeFinished < currentRecord)
+        {
+            Debug.Log(currentRecord);
             currentRecord = timeFinished;
             globalVars.currentRecord = currentRecord;
             PlayerPrefs.SetFloat("currentRecord", currentRecord);
@@ -68,4 +83,9 @@ public class RecordManager : MonoBehaviour
         return FormatTime(currentRecord);
     }
 
+    public string DisplayFinishedTime()
+    {
+        float timeToConvert = GetTimeFinished();
+        return FormatTime(timeToConvert);
+    }
 }

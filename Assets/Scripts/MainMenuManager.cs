@@ -9,13 +9,14 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject ControlsMenu;
     [SerializeField] private GameObject DialogueBox;
     [SerializeField] private GameObject DevToolsMenu;
+    [SerializeField] private GameObject RecordMenu;
 
     public void Start()
     {
         HideOptionsMenu();
         if (SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0) || SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(1))
         {
-            CursorOff();
+            Cursor.visible = false;
         }
     }
 
@@ -110,5 +111,14 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
+    public void ShowRecordMenu()
+    {
+        RecordMenu.SetActive(true);
+    }
 
+    // Function to close the options menu
+    public void HideRecordMenu()
+    {
+        RecordMenu.SetActive(false);
+    }
 }

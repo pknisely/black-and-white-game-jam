@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     // Objects to hold images of the Hud -- Array of music notes, an array of headphones, and the record
     public GameObject[] MusicNotes;
     public GameObject[] Headphones;
@@ -19,8 +17,6 @@ public class UIManager : MonoBehaviour
 
     public RecordManager recordManager;
     [SerializeField] private TMP_Text currentTimeBox;
-
-
 
     // Accessible music manager for values from heighth of player
     public MusicManager musicManager;
@@ -34,16 +30,16 @@ public class UIManager : MonoBehaviour
 
     // Strings for text boxes
 
-    private string controlsText;
-    private string introScreen = "Someone has taken Happy the Robot's record!\n\nCan you get the record?\n\nPress the 'p' key on the keyboard to pause at any time and see the controls.";
+    private string introScreen = "Someone has taken Happy the Robot's headphones and record!\n\nCan you recover the headphones and get the record?\n\nPress the 'p' key on the keyboard to pause at any time and see the controls.";
     private string gotBlackHeadphones = "You got the black headphones!\n\nYou can jump!";
     private string gotWhiteHeadphones = "You got the white headphones!\n\nYou can jump higher and swap!";
     private string gotGrayHeadphones = "You got the gray headphones! You can jump higher and swap backwards!";
     private string gotRecord = "You got the record! Congratulations! The new record is ";
     private string gotRecordPart2 = ".";
     private string didntGetRecord = "You didn't get the record... The current record is ";
-    private string didntGetRecordPart2 = ". Maybe try again?";
-    private string credits = "Thanks for playing!\n\nCREDITS\n\nEber Alegria\nBent Neatly\nPatrick Knisely aka Pdyx\n\nIf you enjoyed the game and would like to see it improved upon and expanded, please let us know!\n\npdyx123 @gmail.com";
+    private string didntGetRecordPart2 = ". You finished in ";
+    private string didntGetRecordPart3 = ". Maybe try again?";
+    private string credits = "Thanks for playing!\n\nCREDITS\nEber Alegria\nBent Neatly\nPatrick Knisely aka Pdyx\n\nIf you enjoyed the game and want to see more of Happy, please let us know!\n\npdyx123@gmail.com";
 
 
     // bools for item obtaining
@@ -187,13 +183,6 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
         switch (level)
         {
-            case 0:
-                {
-                    // CursorOn()
-                    //                               controls = "";
-                    break;
-                }
-
             case 1:
                 {
                     switch (occ)
@@ -234,12 +223,6 @@ public class UIManager : MonoBehaviour
                 {
                     switch (occ)
                     {
-                        case 0:
-                            {
-                                // CursorOn()
-                                //                               controls = "";
-                                break;
-                            }
                         case 1:
                             {
                                 CursorOn();
@@ -257,8 +240,6 @@ public class UIManager : MonoBehaviour
                     {
                         case 0:
                             {
-                                // CursorOn()
-                                //                               controls = "";
                                 break;
                             }
                         case 1:
@@ -272,7 +253,7 @@ public class UIManager : MonoBehaviour
                             {
                                 CursorOn();
                                 DialogueBox.SetActive(true);
-                                textBox.text = didntGetRecord + recordManager.DisplayCurrentRecord() + didntGetRecordPart2;
+                                textBox.text = didntGetRecord + recordManager.DisplayCurrentRecord() + didntGetRecordPart2 + recordManager.DisplayFinishedTime() + didntGetRecordPart3;
                                 break;
                             }
                         case 3:

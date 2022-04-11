@@ -145,12 +145,12 @@ MonoBehaviour:
 
     Move - a and d
 
-    jump - spacebar
+    jump - w
 
-    left
-    mouse  - swap
+    right mouse
+    (or right key)  - swap
 
-    right mouse  - swap backwards'
+    left mouse (or left key) - swap backwards'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65e5efa8501613f459917e401c4d6311, type: 2}
   m_sharedMaterial: {fileID: -4313744347489535683, guid: 65e5efa8501613f459917e401c4d6311, type: 2}

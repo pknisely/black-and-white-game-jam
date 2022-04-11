@@ -24,16 +24,6 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip swapSFX;
     public AudioSource sfxAudioSource;
 
-    // Patrick adding colors
-    // public Color colorOne;
-    // public Color colorTwo;
-
-    // Patrick adding a raycast to look down to see color of current platform
-    // private Ray2D ray;
-    // private RaycastHit2D hit;
-
-    // public LayerMask floorMask;
-
     // Update is called once per frame
     void Update()
     {
@@ -55,23 +45,7 @@ public class PlayerMovement : MonoBehaviour
             sfxAudioSource.clip = swapSFX;
             sfxAudioSource.Play();
         }
-/*
-        hit = Physics2D.Raycast(controller.m_GroundCheck.position, -Vector2.up, 0.1f, floorMask);
-        
-        Debug.DrawLine(controller.m_GroundCheck.position, controller.m_GroundCheck.position - Vector3.up * 0.1f);
-        if (hit)
-        {
-            if (!isColorOne && hit.transform.gameObject.GetComponent<Tile>().isColorOne)
-                ChangeCollider("colorOne");
-            else if (!isColorTwo && hit.transform.gameObject.GetComponent<Tile>().isColorTwo)
-                ChangeCollider("colorTwo");
-            else
-            {
-                GetComponent<BoxCollider2D>().enabled = true;
-                GetComponent<CircleCollider2D>().enabled = true;
-            }
-        }
-  */
+
     }
 
 
