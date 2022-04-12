@@ -18,6 +18,7 @@ public class HeadphonesManager : MonoBehaviour
     private void Start()
     {
         uiManager.DisplayDialogueBox(1, 0);
+        Cursor.visible = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collider)

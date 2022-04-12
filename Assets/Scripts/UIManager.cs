@@ -189,10 +189,8 @@ public class UIManager : MonoBehaviour
                     {
                         case 0:
                             {
-                                CursorOn();
                                 Cursor.visible = true;
                                 DialogueBox.SetActive(true);
-                                Cursor.visible = true;
                                 textBox.text = introScreen;
                                 break;
                             }

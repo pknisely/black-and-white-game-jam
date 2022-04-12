@@ -14,9 +14,13 @@ public class MainMenuManager : MonoBehaviour
     public void Start()
     {
         HideOptionsMenu();
-        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0) || SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(1))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(2) || SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(3))
         {
             Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.visible = true;
         }
     }
 

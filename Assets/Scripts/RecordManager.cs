@@ -40,7 +40,7 @@ public class RecordManager : MonoBehaviour
             PlayerPrefs.SetFloat("currentRecord", currentRecord);
             return true;
         }        
-        else if (timeFinished < currentRecord)
+        else if (timeFinished <= currentRecord)
         {
             Debug.Log(currentRecord);
             currentRecord = timeFinished;
