@@ -2070,10 +2070,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623334605361319393, guid: 1b58c7e892e1313499be9a5a44c3209a, type: 3}
       propertyPath: m_text
-      value: "Happy the Robot wants nothing more than to listen to a record on their
-        headphones and enjoy life, but sometimes the world has other plans. There
-        is no future without radical change, justice, deft adaptation, and good music.
-        Help Happy get their music back!\r\n\r"
+      value: "After escaping from Dr. Honey\u2019s lab, Happy the Robot discovered
+        the joy of music. Happy wants nothing more than to listen to a record on
+        their headphones and enjoy life, but sometimes the world has other plans.
+        There is no future without radical change, justice, deft adaptation, and
+        good music. Help Happy get their music back!"
       objectReference: {fileID: 0}
     - target: {fileID: 7623334605361319393, guid: 1b58c7e892e1313499be9a5a44c3209a, type: 3}
       propertyPath: m_fontSize
